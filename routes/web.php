@@ -9,11 +9,8 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-// Authentication routes (provided by Breeze)
-require __DIR__.'/auth.php';
-
 // Authenticated routes
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth:sanctum'])->group(function () {
     // Track management
     Route::get('/tracks', [TrackController::class, 'index'])->name('tracks.index');
     Route::get('/tracks/upload', [TrackController::class, 'create'])->name('tracks.create');
